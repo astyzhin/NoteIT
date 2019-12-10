@@ -1,7 +1,8 @@
-package com.akmisoftware.noteit
+package com.akmisoftware.noteit.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.akmisoftware.noteit.R
 
 class MainActivity : AppCompatActivity() {
 

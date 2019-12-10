@@ -46,6 +46,7 @@ dependencies {
     //Material design
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.cardview:cardview:$rootProject.materialVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.materialVersion"
     //Navigation
     implementation "androidx.navigation:navigation-fragment:$rootProject.lifecycleVersion"
     implementation "androidx.navigation:navigation-ui:$rootProject.lifecycleVersion"
@@ -61,7 +62,6 @@ dependencies {
     //Dagger2
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
     compileOnly "org.glassfish:javax.annotation:3.1.1"

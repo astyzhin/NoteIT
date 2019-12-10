@@ -1,7 +1,7 @@
 package com.akmisoftware.noteit.di.builder
 
 import androidx.lifecycle.ViewModel
-import com.akmisoftware.noteit.di.ViewModelKey
+import com.akmisoftware.noteit.di.utils.ViewModelKey
 import com.akmisoftware.noteit.ui.HomeViewModel
 import com.akmisoftware.noteit.ui.NoteViewModel
 import dagger.Binds

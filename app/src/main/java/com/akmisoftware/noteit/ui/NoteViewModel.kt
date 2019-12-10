@@ -1,6 +1,6 @@
 package com.akmisoftware.noteit.ui
 
-import androidx.lifecycle.ViewModel
+import com.akmisoftware.noteit.ui.base.BaseViewModel
 
-class NoteViewModel : ViewModel() {
+class NoteViewModel : BaseViewModel() {
 }

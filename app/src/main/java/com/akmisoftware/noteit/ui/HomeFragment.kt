@@ -18,6 +18,7 @@ import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentHomeBinding
 import com.akmisoftware.noteit.ui.adapters.HomeAdapter
 import com.akmisoftware.noteit.ui.interaction.HomeListener
+import com.akmisoftware.noteit.ui.viewmodels.HomeViewModel
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -69,8 +70,6 @@ class HomeFragment : DaggerFragment() {
 
     private fun initView(it: MutableList<Note>) {
         recycler_home.layoutManager =  GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-//            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
         recycler_home.adapter = adapter
 
         if (it.isNotEmpty()) {
@@ -96,7 +95,7 @@ class HomeFragment : DaggerFragment() {
 
     override fun onDetach() {
         super.onDetach()
-        homeListener = null
+//        homeListener = null
         compositeDisposable.dispose()
     }
 }

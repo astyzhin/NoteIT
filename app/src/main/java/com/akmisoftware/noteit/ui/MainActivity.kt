@@ -14,6 +14,7 @@ import com.akmisoftware.noteit.databinding.ActivityMainBinding
 import com.akmisoftware.noteit.ui.interaction.HomeListener
 import com.akmisoftware.noteit.ui.interaction.ListenerImpl
 import com.akmisoftware.noteit.ui.interaction.NoteListener
+import com.akmisoftware.noteit.ui.viewmodels.MainActivityViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

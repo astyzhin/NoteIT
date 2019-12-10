@@ -1,10 +1,10 @@
 package com.akmisoftware.noteit.di.builder
 
 import androidx.lifecycle.ViewModel
-import com.akmisoftware.noteit.ui.AddNoteViewModel
-import com.akmisoftware.noteit.ui.HomeViewModel
-import com.akmisoftware.noteit.ui.MainActivityViewModel
-import com.akmisoftware.noteit.ui.ShowNoteViewModel
+import com.akmisoftware.noteit.ui.viewmodels.AddNoteViewModel
+import com.akmisoftware.noteit.ui.viewmodels.HomeViewModel
+import com.akmisoftware.noteit.ui.viewmodels.MainActivityViewModel
+import com.akmisoftware.noteit.ui.viewmodels.ShowNoteViewModel
 import com.akmisoftware.noteit.utils.ViewModelKey
 import dagger.Binds
 import dagger.Module

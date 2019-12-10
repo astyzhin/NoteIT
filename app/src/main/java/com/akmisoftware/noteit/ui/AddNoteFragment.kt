@@ -16,6 +16,7 @@ import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentAddNoteBinding
 import com.akmisoftware.noteit.ui.interaction.NoteListener
+import com.akmisoftware.noteit.ui.viewmodels.AddNoteViewModel
 import com.akmisoftware.noteit.utils.hideKeyboard
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers

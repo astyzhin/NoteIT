@@ -1,4 +1,4 @@
-package com.akmisoftware.noteit.ui
+package com.akmisoftware.noteit.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -10,23 +10,23 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class AddNoteViewModel @Inject constructor(var noteRepository: NoteRepo) : ViewModel() {
+class AddNoteViewModel @Inject constructor(var noteRepo: NoteRepo) : ViewModel() {
 
 
     fun insertNote(note: Note): Completable {
         return Completable.fromAction {
-            noteRepository.insertNote(note)
+            noteRepo.insertNote(note)
         }
     }
 
     fun editNote(note: Note): Completable {
         return Completable.fromAction {
-            noteRepository.editNote(note)
+            noteRepo.editNote(note)
         }
     }
 
     fun getNoteById(id: String): LiveData<Note> {
-        return noteRepository.getNoteById(id)
+        return noteRepo.getNoteById(id)
             .flatMap { Single.just(it) }
             .subscribeOn(Schedulers.io())
             .to { LiveDataReactiveStreams.fromPublisher(it.toFlowable()) }

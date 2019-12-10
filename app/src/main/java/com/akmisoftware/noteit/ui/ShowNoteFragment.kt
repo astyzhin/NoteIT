@@ -1,6 +1,8 @@
 package com.akmisoftware.noteit.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +12,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentShowNoteBinding
+import com.akmisoftware.noteit.ui.interaction.NoteListener
+import com.akmisoftware.noteit.ui.viewmodels.ShowNoteViewModel
 import dagger.android.support.DaggerFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ShowNoteFragment : DaggerFragment() {
@@ -20,7 +27,12 @@ class ShowNoteFragment : DaggerFragment() {
     }
 
     @Inject
+    lateinit var compositeDisposable: CompositeDisposable
+
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private var noteInteractionListener: NoteListener? = null
 
     private val viewModel: ShowNoteViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(
@@ -38,11 +50,31 @@ class ShowNoteFragment : DaggerFragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_show_note, container, false)
         binding.lifecycleOwner = this
         binding.note = note
+        binding.btnDelete.setOnClickListener {
+            compositeDisposable.add(viewModel.deleteNote(note)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.d(NAME, "DELETE: deleted successfully")
+
+                }, {t: Throwable? ->
+                    Log.d(NAME,"DELETE: ${t?.message}")
+                }))
+
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is NoteListener) {
+            noteInteractionListener = context
+        }
     }
 
 }

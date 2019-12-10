@@ -1,4 +1,4 @@
-package com.akmisoftware.noteit.ui
+package com.akmisoftware.noteit.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams

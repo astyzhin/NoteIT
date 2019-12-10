@@ -3,5 +3,12 @@
     <string name="hello_blank">Hello Blank</string>
     <string name="flush_database">Flush database</string>
     <string name="empty_list">Add your first note!</string>
+    <string name="take_photo">Take photo</string>
+    <string name="choose_photo">Choose image</string>
+    <string name="save_note">Save note</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="edit_note">Edit</string>
+    <string name="delete_note">Delete</string>
 
 </resources>

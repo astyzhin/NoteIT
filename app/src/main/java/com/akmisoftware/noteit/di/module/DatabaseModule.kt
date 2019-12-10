@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.akmisoftware.noteit.data.db.AppDatabase
 import com.akmisoftware.noteit.data.db.NoteDao
+import com.akmisoftware.noteit.data.repo.NoteRepo
+import com.akmisoftware.noteit.data.repo.NoteRepoImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,5 +23,9 @@ class DatabaseModule {
     @Provides
     fun provideDao(appDatabase: AppDatabase): NoteDao {
         return appDatabase.noteDao()
+    }
+    @Provides
+    fun provideRepo(database: AppDatabase): NoteRepo {
+        return NoteRepoImpl(database)
     }
 }

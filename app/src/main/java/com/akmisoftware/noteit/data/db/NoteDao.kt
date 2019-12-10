@@ -9,9 +9,6 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNote(note: Note)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNotes(notes: List<Note>)
-
     @Query("SELECT * FROM note")
     fun getAllNotes(): LiveData<List<Note>>
 
@@ -22,8 +19,8 @@ interface NoteDao {
     fun editNote(note: Note)
 
     @Delete
-    fun deleteNote(note: Note): LiveData<Note>
+    fun deleteNote(note: Note)
 
     @Query("DELETE FROM note")
-    fun deleteAll(): LiveData<List<Note>>
+    fun deleteAll()
 }

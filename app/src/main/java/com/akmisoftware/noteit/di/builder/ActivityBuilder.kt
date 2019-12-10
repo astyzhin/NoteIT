@@ -1,6 +1,5 @@
-package com.akmisoftware.noteit.di
+package com.akmisoftware.noteit.di.builder
 
-import com.akmisoftware.noteit.di.builder.MainActivityProvider
 import com.akmisoftware.noteit.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

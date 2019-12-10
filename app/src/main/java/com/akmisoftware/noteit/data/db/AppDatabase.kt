@@ -8,6 +8,7 @@ import com.akmisoftware.noteit.data.model.Note
 abstract class AppDatabase : RoomDatabase() {
     companion object {
         const val VERSION = 1
+        const val NAME = "note.db"
     }
 
     abstract fun noteDao(): NoteDao

@@ -22,7 +22,6 @@ class AddNoteViewModel @Inject constructor(var noteRepository: NoteRepo) : ViewM
     fun editNote(note: Note): Completable {
         return Completable.fromAction {
             noteRepository.editNote(note)
-
         }
     }
 
@@ -32,5 +31,4 @@ class AddNoteViewModel @Inject constructor(var noteRepository: NoteRepo) : ViewM
             .subscribeOn(Schedulers.io())
             .to { LiveDataReactiveStreams.fromPublisher(it.toFlowable()) }
     }
-
 }

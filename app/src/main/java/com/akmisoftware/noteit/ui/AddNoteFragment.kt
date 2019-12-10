@@ -16,6 +16,7 @@ import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentAddNoteBinding
 import com.akmisoftware.noteit.ui.interaction.NoteListener
+import com.akmisoftware.noteit.utils.hideKeyboard
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,10 +28,10 @@ import javax.inject.Inject
 
 class AddNoteFragment : DaggerFragment() {
 
-    private val TAG: String = AddNoteFragment::class.java.simpleName
-
     companion object {
         val NAME: String = AddNoteFragment::class.java.name
+        private val TAG: String = AddNoteFragment::class.java.simpleName
+
     }
 
     private var noteInteractionListener: NoteListener? = null
@@ -66,44 +67,41 @@ class AddNoteFragment : DaggerFragment() {
         }
 
         binding.btnSave.setOnClickListener {
-
             if (id == null) {
-
-                compositeDisposable.add(viewModel.insertNote(
-                    Note(
-                        UUID.randomUUID().toString(),
-                        edit_title.text.toString(), edit_description.text.toString()
+                compositeDisposable.add(
+                    viewModel.insertNote(
+                        Note(
+                            UUID.randomUUID().toString(),
+                            edit_title.text.toString(), edit_description.text.toString()
+                        )
                     )
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe({
+
+                            Log.d(TAG, "INSERT: item inserted in table")
+                        }, { throwable ->
+
+                            Log.e(TAG, "Error: INSERT " + throwable.message)
+                        })
                 )
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe({
-
-                        Log.d(TAG, "INSERT: item inserted in table")
-                    }, { throwable ->
-
-                        Log.e(TAG, "Error: INSERT " + throwable.message)
-                    })
-                )
-
             } else {
-                compositeDisposable.add(viewModel.editNote(
-                    Note(
-                        id,
-                        edit_title.text.toString(),
-                        edit_description.text.toString()
+                compositeDisposable.add(
+                    viewModel.editNote(
+                        Note(
+                            id,
+                            edit_title.text.toString(),
+                            edit_description.text.toString()
+                        )
                     )
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe({
+                            Log.d(TAG, "INSERT: item inserted in table")
+                        }, { throwable ->
+                            Log.e(TAG, "Error: INSERT " + throwable.message)
+                        })
                 )
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe({
-                        Log.d(TAG, "INSERT: item inserted in table")
-                    }, { throwable ->
-                        Log.e(TAG, "Error: INSERT " + throwable.message)
-                    })
-                )
-
             }
-
-
+            it.hideKeyboard()
             noteInteractionListener?.noteToHome()
         }
         return binding.root
@@ -119,7 +117,6 @@ class AddNoteFragment : DaggerFragment() {
 
         if (context is NoteListener) {
             noteInteractionListener = context
-
         }
     }
 
@@ -128,6 +125,4 @@ class AddNoteFragment : DaggerFragment() {
         noteInteractionListener = null
         compositeDisposable.dispose()
     }
-
-
 }

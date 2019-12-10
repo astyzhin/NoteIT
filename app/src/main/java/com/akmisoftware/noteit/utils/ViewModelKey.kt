@@ -1,4 +1,4 @@
-package com.akmisoftware.noteit.di.utils
+package com.akmisoftware.noteit.utils
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

@@ -22,7 +22,6 @@ class HomeAdapter(private val notes: MutableList<Note>, private val homeListener
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(notes[position])
-
     }
 
     fun add(list: MutableList<Note>) {
@@ -42,10 +41,7 @@ class HomeAdapter(private val notes: MutableList<Note>, private val homeListener
         }
 
         init {
-
             dataBinding.homeListener = homeListener
-
         }
-
     }
 }

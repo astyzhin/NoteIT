@@ -15,11 +15,12 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class,  ActivityBuilder::class,
-    DatabaseModule::class, ContextModule::class, CompositeDisposableModule::class,
-    ListenerModule::class])
+@Component(
+    modules = [AndroidSupportInjectionModule::class, ActivityBuilder::class,
+        DatabaseModule::class, ContextModule::class, CompositeDisposableModule::class,
+        ListenerModule::class]
+)
 interface CoreComponent : AndroidInjector<App> {
-
 
     @Component.Builder
     interface Builder {
@@ -31,6 +32,4 @@ interface CoreComponent : AndroidInjector<App> {
         @BindsInstance
         fun listenerModule(listenerModule: ListenerModule): Builder
     }
-
-
 }

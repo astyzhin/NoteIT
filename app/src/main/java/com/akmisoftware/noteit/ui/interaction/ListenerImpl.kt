@@ -11,9 +11,6 @@ import javax.inject.Inject
 class ListenerImpl @Inject constructor(private var activity: MainActivity) :
     HomeListener, NoteListener {
 
-    private val TAG = MainActivity::class.java.simpleName
-
-
     override fun homeToCreateNote() {
         findNavController(
             activity,
@@ -40,7 +37,6 @@ class ListenerImpl @Inject constructor(private var activity: MainActivity) :
     }
 
     override fun deleteNote(note: Note) {
-
     }
 
     override fun noteToHome() {
@@ -48,13 +44,5 @@ class ListenerImpl @Inject constructor(private var activity: MainActivity) :
             activity,
             R.id.nav_host_fragment
         ).navigate(R.id.action_nav_add_note_to_nav_home)
-    }
-
-    fun dispose() {
-
-    }
-
-    fun deleteAllNote() {
-
     }
 }

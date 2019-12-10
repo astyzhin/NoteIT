@@ -34,20 +34,15 @@ class ShowNoteFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val note: Note = arguments?.getSerializable("show_note") as Note
-
-
         val binding: FragmentShowNoteBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_show_note, container, false)
-
         binding.lifecycleOwner = this
         binding.note = note
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
 }

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentHomeBinding
@@ -52,18 +52,14 @@ class HomeFragment : DaggerFragment() {
     ): View? {
         val binding: FragmentHomeBinding =
             inflate(inflater, R.layout.fragment_home, container, false)
-
         binding.lifecycleOwner = this
-
         binding.listener = homeListener
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewModel) {
-
             getAllNotes().observe(viewLifecycleOwner, Observer {
                 initView(it)
             })
@@ -72,8 +68,9 @@ class HomeFragment : DaggerFragment() {
 
 
     private fun initView(it: MutableList<Note>) {
-        recycler_home.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_home.layoutManager =  GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+//            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
         recycler_home.adapter = adapter
 
         if (it.isNotEmpty()) {
@@ -92,10 +89,8 @@ class HomeFragment : DaggerFragment() {
 
         if (context is HomeListener) {
             homeListener = context
-
         } else {
-            throw RuntimeException(context.toString() + " must implement HomeInteraction")
-
+            throw RuntimeException(context.toString())
         }
     }
 

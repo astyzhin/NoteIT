@@ -20,10 +20,12 @@ class DatabaseModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
     @Provides
     fun provideDao(appDatabase: AppDatabase): NoteDao {
         return appDatabase.noteDao()
     }
+
     @Provides
     fun provideRepo(database: AppDatabase): NoteRepo {
         return NoteRepoImpl(database)

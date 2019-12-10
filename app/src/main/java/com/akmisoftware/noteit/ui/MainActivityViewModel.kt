@@ -9,14 +9,12 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(var noteRepository: NoteRepo) : ViewModel() {
 
     fun deleteAllNotes(): Completable {
-
         return Completable.fromAction {
             noteRepository.deleteAll()
         }
     }
 
     fun deleteNote(note: Note): Completable {
-
         return Completable.fromAction {
             noteRepository.deleteNote(note)
         }

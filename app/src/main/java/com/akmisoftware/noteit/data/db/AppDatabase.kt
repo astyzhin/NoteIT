@@ -9,6 +9,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         const val VERSION = 1
         const val NAME = "note.db"
+        var TEST_MODE = false
     }
 
     abstract fun noteDao(): NoteDao

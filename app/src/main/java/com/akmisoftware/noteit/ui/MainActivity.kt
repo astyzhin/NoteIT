@@ -21,7 +21,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListener, NoteListener {
+class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListener, NoteListener {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -33,8 +33,11 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListene
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: MainActivityViewModel by lazy { ViewModelProviders.of(this,viewModelFactory).get(
-        MainActivityViewModel::class.java) }
+    private val viewModel: MainActivityViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(
+            MainActivityViewModel::class.java
+        )
+    }
 
     private val interactionsListenerImpl: ListenerImpl = ListenerImpl(this)
 
@@ -46,9 +49,10 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListene
             .subscribe({
                 Log.d(TAG, "DELETE: deleted successfully")
 
-            }, {t: Throwable? ->
-                Log.d(TAG,"DELETE: ${t?.message}")
-            }))
+            }, { t: Throwable? ->
+                Log.d(TAG, "DELETE: ${t?.message}")
+            })
+        )
     }
 
     override fun homeToEditNote(id: String) {
@@ -69,8 +73,8 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding : ActivityMainBinding
-                =  DataBindingUtil.setContentView(this,
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_main
         )
         setSupportActionBar(binding.toolbar)
@@ -87,18 +91,20 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        compositeDisposable.add(viewModel.deleteAllNotes()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.d(TAG, "DELETE: deleted successfully")
-
-            }, {t: Throwable? ->
-                Log.d(TAG,"DELETE: ${t?.message}")
-            }))
-
         return when (item.itemId) {
-            R.id.action_delete -> true
+            R.id.action_delete -> {
+                compositeDisposable.add(viewModel.deleteAllNotes()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Log.d(TAG, "DELETE: deleted successfully")
+
+                    }, { t: Throwable? ->
+                        Log.d(TAG, "DELETE: ${t?.message}")
+                    })
+                )
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -112,5 +118,4 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), HomeListene
         super.onStop()
         compositeDisposable.dispose()
     }
-
 }

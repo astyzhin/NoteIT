@@ -60,7 +60,7 @@ class ShowNoteFragment : DaggerFragment() {
                 }, {t: Throwable? ->
                     Log.d(NAME,"DELETE: ${t?.message}")
                 }))
-
+            noteInteractionListener?.noteToHome()
         }
         return binding.root
     }

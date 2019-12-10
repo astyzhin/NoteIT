@@ -1,8 +1,9 @@
 package com.akmisoftware.noteit.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.akmisoftware.noteit.data.model.Note
+import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface NoteDao {
@@ -10,10 +11,10 @@ interface NoteDao {
     fun insertNote(note: Note)
 
     @Query("SELECT * FROM note")
-    fun getAllNotes(): LiveData<List<Note>>
+    fun getAllNotes(): Flowable<MutableList<Note>>
 
     @Query("SELECT * FROM note WHERE id = :id")
-    fun getNoteById(id: Int): LiveData<Note>
+    fun getNoteById(id: String): Single<Note>
 
     @Update
     fun editNote(note: Note)

@@ -1,8 +1,9 @@
 package com.akmisoftware.noteit.data.repo
 
-import androidx.lifecycle.LiveData
 import com.akmisoftware.noteit.data.db.AppDatabase
 import com.akmisoftware.noteit.data.model.Note
+import io.reactivex.Flowable
+import io.reactivex.Single
 
 class NoteRepoImpl(private val database: AppDatabase) : NoteRepo {
     override fun insertNote(note: Note) {
@@ -21,11 +22,11 @@ class NoteRepoImpl(private val database: AppDatabase) : NoteRepo {
         database.noteDao().editNote(note)
     }
 
-    override fun getAllNotes(): LiveData<List<Note>> {
+    override fun getAllNotes(): Flowable<MutableList<Note>> {
         return database.noteDao().getAllNotes()
     }
 
-    override fun getNoteById(id: Int): LiveData<Note> {
+    override fun getNoteById(id: String): Single<Note> {
         return database.noteDao().getNoteById(id)
     }
 }

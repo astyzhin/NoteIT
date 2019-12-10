@@ -2,8 +2,10 @@ package com.akmisoftware.noteit.di.builder
 
 import androidx.lifecycle.ViewModel
 import com.akmisoftware.noteit.di.utils.ViewModelKey
+import com.akmisoftware.noteit.ui.AddNoteViewModel
 import com.akmisoftware.noteit.ui.HomeViewModel
-import com.akmisoftware.noteit.ui.NoteViewModel
+import com.akmisoftware.noteit.ui.MainActivityViewModel
+import com.akmisoftware.noteit.ui.ShowNoteViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -14,5 +16,20 @@ abstract class AppViewModelBuilder {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
-    abstract fun bindNoteViewModel(noteViewModel: NoteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddNoteViewModel::class)
+    abstract fun bindAddNoteViewModel(addNoteViewModel: AddNoteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ShowNoteViewModel::class)
+    abstract fun bindShowNoteViewModel(showNoteViewModel: ShowNoteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    abstract fun bindMainActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
+
 }

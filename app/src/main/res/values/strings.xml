@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">NoteIT</string>
     <string name="hello_blank">Hello Blank</string>
+    <string name="flush_database">Flush database</string>
+    <string name="empty_list">Please add a note</string>
 
 </resources>

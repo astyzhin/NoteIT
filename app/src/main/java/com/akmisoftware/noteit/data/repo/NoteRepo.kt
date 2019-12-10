@@ -1,7 +1,8 @@
 package com.akmisoftware.noteit.data.repo
 
-import androidx.lifecycle.LiveData
 import com.akmisoftware.noteit.data.model.Note
+import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface NoteRepo {
 
@@ -9,7 +10,7 @@ interface NoteRepo {
     fun deleteNote(note: Note)
     fun deleteAll()
     fun editNote(note: Note)
-    fun getAllNotes(): LiveData<List<Note>>
-    fun getNoteById(id: Int): LiveData<Note>
+    fun getAllNotes(): Flowable<MutableList<Note>>
+    fun getNoteById(id: String): Single<Note>
 
 }

@@ -6,25 +6,34 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_note"
+        android:id="@+id/nav_add_note"
         android:name="com.akmisoftware.noteit.ui.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_add_note">
 
         <action
-            android:id="@+id/action_nav_home_to_nav_detail"
+            android:id="@+id/action_nav_add_note_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.akmisoftware.noteit.ui.NoteFragment"
-        android:label="Note"
-        tools:layout="@layout/fragment_note">
+        android:name="com.akmisoftware.noteit.ui.AddNoteFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_nav_drug_to_nav_detail"
-            app:destination="@id/nav_note" />
+            android:id="@+id/action_nav_home_to_nav_add_note"
+            app:destination="@id/nav_add_note" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_show_note"
+            app:destination="@id/nav_add_note" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_show_note"
+        android:name="com.akmisoftware.noteit.ui.ShowNoteFragment"
+        android:label="Show Note"
+        tools:layout="@layout/fragment_show_note" />
 
 
 </navigation>

@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.akmisoftware.noteit.data.model.Note"/>
+            type="com.akmisoftware.noteit.data.model.Note" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

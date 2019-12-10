@@ -9,6 +9,6 @@ import dagger.android.support.DaggerFragment
  */
 class NoteFragment : DaggerFragment() {
     companion object {
-        val NAME: String = HomeFragment::class.java.simpleName
+        val NAME: String = NoteFragment::class.java.simpleName
     }
 }

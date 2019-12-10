@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NoteIT</string>
+    <string name="hello_blank">Hello Blank</string>
+
 </resources>

@@ -10,5 +10,6 @@ MVVM, Dagger2, Room, LiveData, RxJava, ArchNavComponents.
 
 TODO: 
 * Saving images to DB and adding them to Note's view.
-* Fix bugs with navigation
 * Add more tests
+
+//* Fix bugs with navigation

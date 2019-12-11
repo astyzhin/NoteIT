@@ -62,6 +62,9 @@ class ShowNoteFragment : DaggerFragment() {
                 }))
             noteInteractionListener?.noteToHome()
         }
+        binding.btnEdit.setOnClickListener {
+            noteInteractionListener?.noteToEdit(note.id)
+        }
         return binding.root
     }
 
@@ -76,5 +79,8 @@ class ShowNoteFragment : DaggerFragment() {
             noteInteractionListener = context
         }
     }
-
+    override fun onStop() {
+        super.onStop()
+        compositeDisposable.clear()
+    }
 }

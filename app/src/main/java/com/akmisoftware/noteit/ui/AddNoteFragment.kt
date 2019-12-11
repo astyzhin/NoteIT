@@ -167,7 +167,7 @@ class AddNoteFragment : DaggerFragment() {
 
     override fun onDetach() {
         super.onDetach()
-//        noteInteractionListener = null
-        compositeDisposable.dispose()
+        noteInteractionListener = null
+        compositeDisposable.clear()
     }
 }

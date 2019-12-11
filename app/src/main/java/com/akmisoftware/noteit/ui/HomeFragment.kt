@@ -67,9 +67,9 @@ class HomeFragment : DaggerFragment() {
         }
     }
 
-
     private fun initView(it: MutableList<Note>) {
-        recycler_home.layoutManager =  GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        recycler_home.layoutManager =
+            GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         recycler_home.adapter = adapter
 
         if (it.isNotEmpty()) {
@@ -85,7 +85,6 @@ class HomeFragment : DaggerFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         if (context is HomeListener) {
             homeListener = context
         } else {
@@ -95,7 +94,7 @@ class HomeFragment : DaggerFragment() {
 
     override fun onDetach() {
         super.onDetach()
-//        homeListener = null
-        compositeDisposable.dispose()
+        homeListener = null
+        compositeDisposable.clear()
     }
 }

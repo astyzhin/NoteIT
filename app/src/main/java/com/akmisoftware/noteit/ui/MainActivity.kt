@@ -71,6 +71,10 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
         interactionsListenerImpl.noteToHome()
     }
 
+    override fun noteToEdit(id: String) {
+        interactionsListenerImpl.noteToEdit(id)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
@@ -116,6 +120,11 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
 
     override fun onStop() {
         super.onStop()
+        compositeDisposable.clear()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         compositeDisposable.dispose()
     }
 }

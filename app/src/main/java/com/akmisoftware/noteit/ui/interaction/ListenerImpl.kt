@@ -40,13 +40,18 @@ class ListenerImpl @Inject constructor(private var activity: MainActivity) :
     }
 
     override fun noteToHome() {
-//        findNavController(
-//            activity,
-//            R.id.nav_host_fragment
-//        ).navigate(R.id.action_nav_add_note_to_nav_home)
         findNavController(
             activity,
             R.id.nav_host_fragment
         ).popBackStack(R.id.nav_home, false)
+    }
+
+    override fun noteToEdit(id: String) {
+        val args = Bundle()
+        args.putString("edit_note", id)
+        findNavController(
+            activity,
+            R.id.nav_host_fragment
+        ).navigate(R.id.action_nav_show_note_to_nav_add_note, args)
     }
 }

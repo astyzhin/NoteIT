@@ -51,7 +51,6 @@ class AppDatabaseTest {
     }
 
 
-
     @Throws(InterruptedException::class)
     fun <T> getValue(liveData: LiveData<T>): T {
         val data = arrayOfNulls<Any>(1)

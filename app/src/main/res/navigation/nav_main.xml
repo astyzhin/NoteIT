@@ -13,13 +13,17 @@
         <action
             android:id="@+id/action_nav_home_to_nav_add_note"
             app:destination="@id/nav_add_note"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@anim/exit_slide_up"
+            app:exitAnim="@anim/enter_slide_up"
+            app:popEnterAnim="@anim/pop_exit_slide_down"
+            app:popExitAnim="@anim/pop_enter_slide_down" />
         <action
             android:id="@+id/action_nav_home_to_nav_show_note"
             app:destination="@id/nav_show_note"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@anim/exit_slide_up"
+            app:exitAnim="@anim/enter_slide_up"
+            app:popEnterAnim="@anim/pop_exit_slide_down"
+            app:popExitAnim="@anim/pop_enter_slide_down" />
     </fragment>
 
     <fragment
@@ -28,11 +32,9 @@
         android:label="Add or Edit Note"
         tools:layout="@layout/fragment_add_note">
 
-        <action
-            android:id="@+id/action_nav_add_note_to_nav_home"
-            app:destination="@+id/nav_home"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+<!--        <action-->
+<!--            android:id="@+id/action_nav_add_note_to_nav_home"-->
+<!--            app:destination="@+id/nav_home" />-->
     </fragment>
 
     <fragment
@@ -40,11 +42,9 @@
         android:name="com.akmisoftware.noteit.ui.ShowNoteFragment"
         android:label="Show Note"
         tools:layout="@layout/fragment_show_note">
-        <action
-            android:id="@+id/action_nav_add_note_to_nav_home"
-            app:destination="@id/nav_home"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+<!--        <action-->
+<!--            android:id="@+id/action_nav_add_note_to_nav_home"-->
+<!--            app:destination="@id/nav_home" />-->
     </fragment>
 
 </navigation>

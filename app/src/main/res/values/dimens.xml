@@ -7,4 +7,20 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="standardPadding">16dp</dimen>
+    <dimen name="minMargin">4dp</dimen>
+    <dimen name="standardMargin">16dp</dimen>
+    <dimen name="midMargin">8dp</dimen>
+    <dimen name="midPadding">8dp</dimen>
+    <dimen name="standardText">14sp</dimen>
+    <dimen name="titleText">16sp</dimen>
+    <dimen name="minPadding">8dp</dimen>
+    <dimen name="cardCornerRadius">10dp</dimen>
+    <dimen name="cardMaxWidth">140dp</dimen>
+    <dimen name="cardMinWidth">100dp</dimen>
+    <dimen name="cardMinHeight">70dp</dimen>
+    <dimen name="bottomCardMinHeight">50dp</dimen>
+    <dimen name="imageViewMinBounds">100dp</dimen>
+    <dimen name="descriptionEditFieldMinHeight">120dp</dimen>
+    <dimen name="zeroDP">0dp</dimen>
 </resources>

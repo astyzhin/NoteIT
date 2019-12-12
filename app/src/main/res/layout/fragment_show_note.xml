@@ -12,7 +12,6 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,10 +20,10 @@
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/midMargin"
+            android:layout_marginTop="@dimen/standardMargin"
             android:text="@{note.title}"
-            android:textSize="16sp"
+            android:textSize="@dimen/titleText"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,9 +33,9 @@
             android:id="@+id/txt_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/midMargin"
             android:text="@{note.body}"
-            android:textSize="14sp"
+            android:textSize="@dimen/standardText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_title"
             tools:text="Note body with some text" />
@@ -44,8 +43,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:padding="16dp"
+            android:minHeight="@dimen/bottomCardMinHeight"
+            android:padding="@dimen/standardPadding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -57,7 +56,7 @@
                     android:id="@+id/btn_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_margin="@dimen/minMargin"
                     android:backgroundTintMode="screen"
                     android:contentDescription="@string/edit_note"
                     android:src="@drawable/ic_edit_black_24dp"
@@ -71,7 +70,7 @@
                     android:id="@+id/btn_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_margin="@dimen/minMargin"
                     android:backgroundTintMode="screen"
                     android:contentDescription="@string/delete_note"
                     android:src="@drawable/ic_delete_black_24dp"

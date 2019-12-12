@@ -11,7 +11,6 @@ import com.akmisoftware.noteit.ui.interaction.HomeListener
 
 class HomeAdapter(private val notes: MutableList<Note>, private val homeListener: HomeListener?) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

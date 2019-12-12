@@ -10,7 +10,6 @@ import java.util.*
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(var noteRepo: NoteRepo) : ViewModel() {
-
     fun getAllNotes(): LiveData<MutableList<Note>> {
         return noteRepo.getAllNotes()
             .onErrorReturn { Collections.emptyList() }

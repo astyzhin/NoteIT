@@ -7,7 +7,6 @@ import io.reactivex.Completable
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(var noteRepo: NoteRepo) : ViewModel() {
-
     fun deleteAllNotes(): Completable {
         return Completable.fromAction {
             noteRepo.deleteAll()

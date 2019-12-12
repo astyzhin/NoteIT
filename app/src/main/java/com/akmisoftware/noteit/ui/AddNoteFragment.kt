@@ -44,14 +44,12 @@ private val REQUIRED_PERMISSIONS =
     arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
 
 class AddNoteFragment : DaggerFragment() {
-
     companion object {
         val NAME: String = AddNoteFragment::class.java.name
-        private val TAG: String = AddNoteFragment::class.java.simpleName
+        private val TAG = AddNoteFragment::class.java.simpleName
     }
 
-    @Inject
-    lateinit var compositeDisposable: CompositeDisposable
+    private var compositeDisposable = CompositeDisposable()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -59,9 +57,9 @@ class AddNoteFragment : DaggerFragment() {
     private val viewModel: AddNoteViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(AddNoteViewModel::class.java)
     }
-    private var noteListener: NoteListener? = null
+    private lateinit var noteListener: NoteListener
 
-    private var imageUri: Uri? = null
+    private lateinit var imageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -116,7 +114,7 @@ class AddNoteFragment : DaggerFragment() {
                     )
                 }
                 it.hideKeyboard()
-                noteListener?.noteToHome()
+                noteListener.noteToHome()
             } else {
                 Toast.makeText(context, "Can't save empty note", Toast.LENGTH_LONG).show()
             }
@@ -124,12 +122,12 @@ class AddNoteFragment : DaggerFragment() {
 
         binding.btnGallery.setOnClickListener {
             Log.d(TAG, "gallery button clicked")
-            noteListener?.noteToGallery(this, REQUEST_IMAGE_FROM_GALLERY)
+            noteListener.noteToGallery(this, REQUEST_IMAGE_FROM_GALLERY)
         }
 
         binding.btnCamera.setOnClickListener {
             Log.d(TAG, "camera button clicked")
-            val timeStamp: String =
+            val timeStamp =
                 SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
             val outputImage = File(activity!!.externalCacheDir, "${timeStamp}.jpg")
             if (outputImage.exists()) {
@@ -145,7 +143,7 @@ class AddNoteFragment : DaggerFragment() {
             } else {
                 Uri.fromFile(outputImage)
             }
-            noteListener?.noteToCamera(this, imageUri!!, REQUEST_IMAGE_CAPTURE)
+            noteListener.noteToCamera(this, imageUri, REQUEST_IMAGE_CAPTURE)
         }
         return binding.root
     }
@@ -203,7 +201,7 @@ class AddNoteFragment : DaggerFragment() {
                             }
                         } else {
                             val imageBmp = BitmapFactory.decodeStream(
-                                activity!!.contentResolver.openInputStream(imageUri!!)
+                                activity!!.contentResolver.openInputStream(imageUri)
                             )
                             Log.d(TAG, "SDK > 28 $imageBmp, $imageUri")
                             imageView.apply {
@@ -227,7 +225,6 @@ class AddNoteFragment : DaggerFragment() {
 
     override fun onDetach() {
         super.onDetach()
-        noteListener = null
         compositeDisposable.clear()
     }
 }

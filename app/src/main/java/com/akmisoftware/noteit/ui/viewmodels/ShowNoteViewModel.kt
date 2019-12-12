@@ -11,7 +11,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ShowNoteViewModel @Inject constructor(var noteRepo: NoteRepo) : ViewModel() {
-
     fun getNoteById(id: String): LiveData<Note> {
         return noteRepo.getNoteById(id)
             .flatMap { Single.just(it) }

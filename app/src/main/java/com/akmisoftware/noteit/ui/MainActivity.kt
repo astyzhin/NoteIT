@@ -23,13 +23,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListener, NoteListener {
-
     companion object {
         private val TAG = MainActivity::class.java.simpleName
     }
 
-    @Inject
-    lateinit var compositeDisposable: CompositeDisposable
+    private var compositeDisposable = CompositeDisposable()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,7 +39,6 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
     private val listenerImpl: ListenerImpl = ListenerImpl(this)
 
     override fun deleteNote(note: Note) {
-
         compositeDisposable.add(viewModel.deleteNote(note)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

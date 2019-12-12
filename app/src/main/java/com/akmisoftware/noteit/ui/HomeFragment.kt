@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil.inflate
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,21 +22,17 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- */
 class HomeFragment : DaggerFragment() {
     companion object {
         val NAME: String = HomeFragment::class.java.simpleName
     }
 
-    @Inject
-    lateinit var compositeDisposable: CompositeDisposable
+    private var compositeDisposable = CompositeDisposable()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private var homeListener: HomeListener? = null
+    private lateinit var homeListener: HomeListener
 
     private val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
@@ -92,7 +87,6 @@ class HomeFragment : DaggerFragment() {
 
     override fun onDetach() {
         super.onDetach()
-        homeListener = null
         compositeDisposable.clear()
     }
 }

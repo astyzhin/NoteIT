@@ -1,7 +1,6 @@
 package com.akmisoftware.noteit
 
 import com.akmisoftware.noteit.di.DaggerCoreComponent
-import com.akmisoftware.noteit.di.module.ListenerModule
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
@@ -10,7 +9,7 @@ class App : DaggerApplication() {
         return DaggerCoreComponent
             .builder()
             .application(this)
-            .listenerModule(ListenerModule())
+//            .listenerModule(ListenerModule())
             .build()
     }
 }

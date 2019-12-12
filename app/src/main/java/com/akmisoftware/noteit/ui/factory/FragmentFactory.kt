@@ -30,5 +30,4 @@ object FragmentFactory {
         }
         return fragment as AddNoteFragment
     }
-
 }

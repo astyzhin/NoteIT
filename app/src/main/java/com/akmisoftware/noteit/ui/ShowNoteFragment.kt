@@ -20,18 +20,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ShowNoteFragment : DaggerFragment() {
-
     companion object {
         val NAME: String = ShowNoteFragment::class.java.name
     }
 
-    @Inject
-    lateinit var compositeDisposable: CompositeDisposable
+    private var compositeDisposable = CompositeDisposable()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private var noteListener: NoteListener? = null
+    private lateinit var noteListener: NoteListener
 
     private val viewModel: ShowNoteViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(ShowNoteViewModel::class.java)
@@ -57,17 +55,16 @@ class ShowNoteFragment : DaggerFragment() {
                 }, {t: Throwable? ->
                     Log.d(NAME,"DELETE: ${t?.message}")
                 }))
-            noteListener?.noteToHome()
+            noteListener.noteToHome()
         }
         binding.btnEdit.setOnClickListener {
-            noteListener?.noteToEdit(note.id)
+            noteListener.noteToEdit(note.id)
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onAttach(context: Context) {

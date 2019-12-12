@@ -16,7 +16,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentAddNoteBinding
@@ -52,9 +51,7 @@ class AddNoteFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: AddNoteViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(
-            AddNoteViewModel::class.java
-        )
+        ViewModelProvider(this, viewModelFactory).get(AddNoteViewModel::class.java)
     }
 
     override fun onCreateView(

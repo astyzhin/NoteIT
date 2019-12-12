@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
 import com.akmisoftware.noteit.databinding.FragmentShowNoteBinding
@@ -35,9 +34,7 @@ class ShowNoteFragment : DaggerFragment() {
     private var noteListener: NoteListener? = null
 
     private val viewModel: ShowNoteViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(
-            ShowNoteViewModel::class.java
-        )
+        ViewModelProvider(this, viewModelFactory).get(ShowNoteViewModel::class.java)
     }
 
     override fun onCreateView(

@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
@@ -41,7 +40,7 @@ class HomeFragment : DaggerFragment() {
     private var homeListener: HomeListener? = null
 
     private val viewModel: HomeViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
 
     private val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), homeListener) }

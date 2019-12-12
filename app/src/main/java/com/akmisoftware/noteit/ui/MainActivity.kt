@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
@@ -34,9 +33,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: MainActivityViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(
-            MainActivityViewModel::class.java
-        )
+        ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
     }
 
     private val listenerImpl: ListenerImpl = ListenerImpl(this)

@@ -44,7 +44,7 @@ class AddNoteFragment : DaggerFragment() {
         private val TAG: String = AddNoteFragment::class.java.simpleName
     }
 
-    private var noteInteractionListener: NoteListener? = null
+    private var noteListener: NoteListener? = null
 
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
@@ -63,7 +63,6 @@ class AddNoteFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val id = arguments?.getString("edit_note")
-
         val binding: FragmentAddNoteBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false)
         binding.lifecycleOwner = this
@@ -112,7 +111,7 @@ class AddNoteFragment : DaggerFragment() {
                 )
             }
             it.hideKeyboard()
-            noteInteractionListener?.noteToHome()
+            noteListener?.noteToHome()
         }
         binding.btnGallery.setOnClickListener {
             Log.d(TAG, "gallery button clicked")
@@ -161,13 +160,13 @@ class AddNoteFragment : DaggerFragment() {
         super.onAttach(context)
 
         if (context is NoteListener) {
-            noteInteractionListener = context
+            noteListener = context
         }
     }
 
     override fun onDetach() {
         super.onDetach()
-        noteInteractionListener = null
+        noteListener = null
         compositeDisposable.clear()
     }
 }

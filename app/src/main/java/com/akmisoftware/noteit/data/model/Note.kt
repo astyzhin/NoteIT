@@ -15,5 +15,5 @@ data class Note(
     var title: String? = "",
     @ColumnInfo
     var body: String? = ""
-) : Serializable{
+) : Serializable {
 }

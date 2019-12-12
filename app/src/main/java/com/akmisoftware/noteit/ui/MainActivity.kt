@@ -39,7 +39,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
         )
     }
 
-    private val interactionsListenerImpl: ListenerImpl = ListenerImpl(this)
+    private val listenerImpl: ListenerImpl = ListenerImpl(this)
 
     override fun deleteNote(note: Note) {
 
@@ -48,7 +48,6 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.d(TAG, "DELETE: deleted successfully")
-
             }, { t: Throwable? ->
                 Log.d(TAG, "DELETE: ${t?.message}")
             })
@@ -56,23 +55,23 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
     }
 
     override fun homeToEditNote(id: String) {
-        interactionsListenerImpl.homeToEditNote(id)
+        listenerImpl.homeToEditNote(id)
     }
 
     override fun homeToCreateNote() {
-        interactionsListenerImpl.homeToCreateNote()
+        listenerImpl.homeToCreateNote()
     }
 
     override fun homeToShowNote(note: Note) {
-        interactionsListenerImpl.homeToShowNote(note)
+        listenerImpl.homeToShowNote(note)
     }
 
     override fun noteToHome() {
-        interactionsListenerImpl.noteToHome()
+        listenerImpl.noteToHome()
     }
 
     override fun noteToEdit(id: String) {
-        interactionsListenerImpl.noteToEdit(id)
+        listenerImpl.noteToEdit(id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,7 +101,6 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         Log.d(TAG, "DELETE: deleted successfully")
-
                     }, { t: Throwable? ->
                         Log.d(TAG, "DELETE: ${t?.message}")
                     })
@@ -114,7 +112,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(findViewById(R.id.nav_host_fragment))
+        val navController = findNavController(this, R.id.nav_host_fragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 

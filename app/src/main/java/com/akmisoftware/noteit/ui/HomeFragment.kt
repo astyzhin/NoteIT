@@ -75,7 +75,6 @@ class HomeFragment : DaggerFragment() {
         if (it.isNotEmpty()) {
             adapter.clear()
             adapter.add(it)
-
         } else {
             adapter.clear()
             Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG)

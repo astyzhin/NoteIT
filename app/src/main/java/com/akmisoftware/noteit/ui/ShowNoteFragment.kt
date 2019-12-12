@@ -32,7 +32,7 @@ class ShowNoteFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private var noteInteractionListener: NoteListener? = null
+    private var noteListener: NoteListener? = null
 
     private val viewModel: ShowNoteViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(
@@ -60,10 +60,10 @@ class ShowNoteFragment : DaggerFragment() {
                 }, {t: Throwable? ->
                     Log.d(NAME,"DELETE: ${t?.message}")
                 }))
-            noteInteractionListener?.noteToHome()
+            noteListener?.noteToHome()
         }
         binding.btnEdit.setOnClickListener {
-            noteInteractionListener?.noteToEdit(note.id)
+            noteListener?.noteToEdit(note.id)
         }
         return binding.root
     }
@@ -76,7 +76,7 @@ class ShowNoteFragment : DaggerFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is NoteListener) {
-            noteInteractionListener = context
+            noteListener = context
         }
     }
     override fun onStop() {

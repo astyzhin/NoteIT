@@ -33,7 +33,6 @@ class AppDatabaseTest {
 
     @After
     fun tearDown() {
-
     }
 
     @Test
@@ -59,13 +58,12 @@ class AppDatabaseTest {
             override fun onChanged(t: T?) {
                 data[0] = t
                 latch.countDown()
-                liveData.removeObserver(this)//To change body of created functions use File | Settings | File Templates.
+                liveData.removeObserver(this)
             }
-
         }
         liveData.observeForever(observer)
         latch.await(2, TimeUnit.SECONDS)
-
+        @Suppress("UNCHECKED_CAST")
         return data[0] as T
     }
 
@@ -73,14 +71,11 @@ class AppDatabaseTest {
     private fun <T> LiveData<T>.blockingObserve(): T? {
         var value: T? = null
         val latch = CountDownLatch(1)
-
         val observer = Observer<T> { t ->
             value = t
             latch.countDown()
         }
-
         observeForever(observer)
-
         latch.await(2, TimeUnit.SECONDS)
         return value
     }

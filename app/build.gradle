@@ -79,8 +79,12 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //TESTS
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$rootProject.testJUnit"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.testAndroid"
+    androidTestImplementation "com.kaspersky.android-components:kaspresso:$rootProject.testKaspresso"
+    androidTestImplementation "androidx.test:runner:$rootProject.testAndroid"
+    androidTestImplementation "androidx.test:core:$rootProject.testAndroid"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.testEspresso"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 }

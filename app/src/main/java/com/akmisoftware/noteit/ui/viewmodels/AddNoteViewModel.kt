@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 class AddNoteViewModel @Inject constructor(var noteRepo: NoteRepo) : ViewModel() {
 
-
     fun insertNote(note: Note): Completable {
         return Completable.fromAction {
             noteRepo.insertNote(note)

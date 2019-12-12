@@ -10,5 +10,6 @@
     <string name="description">Description</string>
     <string name="edit_note">Edit</string>
     <string name="delete_note">Delete</string>
+    <string name="picked_image">Picked image</string>
 
 </resources>

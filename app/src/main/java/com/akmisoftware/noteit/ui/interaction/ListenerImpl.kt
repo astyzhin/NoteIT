@@ -1,6 +1,10 @@
 package com.akmisoftware.noteit.ui.interaction
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.akmisoftware.noteit.R
 import com.akmisoftware.noteit.data.model.Note
@@ -53,5 +57,23 @@ class ListenerImpl @Inject constructor(private var activity: MainActivity) :
             activity,
             R.id.nav_host_fragment
         ).navigate(R.id.action_nav_show_note_to_nav_add_note, args)
+    }
+
+    override fun noteToCamera(fragment: Fragment, imageUri: Uri, requestCode: Int) {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+        fragment.startActivityForResult(intent, requestCode)
+    }
+
+    override fun noteToGallery(fragment: Fragment, requestCode: Int) {
+        val intent = Intent().apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+            putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("image/jpeg", "image/png"))
+        }
+        fragment.startActivityForResult(
+            Intent.createChooser(intent, "Select Image"),
+            requestCode
+        )
     }
 }

@@ -1,10 +1,12 @@
 package com.akmisoftware.noteit.ui
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import com.akmisoftware.noteit.R
@@ -69,6 +71,14 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), HomeListen
 
     override fun noteToEdit(id: String) {
         listenerImpl.noteToEdit(id)
+    }
+
+    override fun noteToCamera(fragment: Fragment, imageUri: Uri, requestCode: Int) {
+        listenerImpl.noteToCamera(fragment, imageUri, requestCode)
+    }
+
+    override fun noteToGallery(fragment: Fragment, requestCode: Int) {
+        listenerImpl.noteToGallery(fragment, requestCode)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
